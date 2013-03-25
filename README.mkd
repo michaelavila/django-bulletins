@@ -1,0 +1,57 @@
+# django-bulletins
+
+The contents of this django app are a few simple models for handling global and
+direct to user bulletins (a bulletin is a message of some kind) and a simple
+context processor to add these global and direct to user bulletins to the
+template context. This implementation of bulletins is kept simple to encourage
+extending it for your own purposes. One example of this could be the case of
+working in teams where you might want organization and team level bulletins.
+
+## Installation
+
+First, install the python module using pip:
+
+    $ pip install django-bulletins
+
+Second, install the app in your django settings file:
+
+    INSTALLED_APPS = {
+    ...
+        'bulletins',
+    }
+
+Third, install the context processor, note that you may need to add
+TEMPLATE\_CONTEXT\_PROCESSORS yourself:
+
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        ...
+        'bulletins.context_processors.bulletins',
+    )
+
+## Usage
+
+With bulletins installed you should have new context variables in your
+templates. Global bulletins can be accessed like so:
+
+    {% for bulletin in bulletins.global %}
+        {{ bulletin.bulletin.creator }}
+        {{ bulletin.bulletin.created_at }}
+        {{ bulletin.bulletin.message }}
+        {% if bulletin.bulletin.has_been_read %}
+            {{ bulletin.bulletin.read_at }}
+        {% endif %}
+    {% endfor %}
+
+Direct bulletins can be accessed in a similar way. Note that direct
+bulletin objects have a property in addition to "bulletin", it is
+"recipient":
+
+    {% for bulletin in bulletins.direct %}
+        {{ bulletin.recipient }}
+        {{ bulletin.bulletin.creator }}
+        {{ bulletin.bulletin.created_at }}
+        {{ bulletin.bulletin.message }}
+        {% if bulletin.bulletin.has_been_read %}
+            {{ bulletin.bulletin.read_at }}
+        {% endif %}
+    {% endfor %}

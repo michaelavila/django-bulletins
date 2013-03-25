@@ -20,8 +20,8 @@ Second, install the app in your django settings file:
         'bulletins',
     }
 
-Third, install the context processor, note that you may need to add
-TEMPLATE\_CONTEXT\_PROCESSORS yourself:
+Third, install the context processor, note that you may need to add 
+TEMPLATE\_CONTEXT\_PROCESSORS to the django settings yourself:
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...

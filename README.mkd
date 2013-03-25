@@ -16,7 +16,7 @@ First, install the python module using pip:
 Second, install the app in your django settings file:
 
     INSTALLED_APPS = {
-    ...
+        ...
         'bulletins',
     }
 

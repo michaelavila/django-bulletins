@@ -30,8 +30,32 @@ TEMPLATE\_CONTEXT\_PROCESSORS yourself:
 
 ## Usage
 
-With bulletins installed you should have new context variables in your
-templates. Global bulletins can be accessed like so:
+There are two ways to use the bulletins app directly. Either you're using the
+resulting context data in the templates or you're creating bulletins from
+within your own applications.
+
+### Creating Bulletins
+
+Provided that you have two user objects userA and userB created and available
+you can create bulletins in this way:
+
+    from bulletins.models import DirectBulletin, GlobalBulletin
+
+    global = GlobalBulletin.objects.create_bulletin(
+        message='Something to let all of your users know should go here.',
+        creator=userA
+    )
+
+    direct = DirectBulletin.objects.create_bulletin(
+        message='Something to let a specific user know should go here.',
+        creator=userA,
+        recipient=userB
+    )
+
+### Bulletins in Context
+
+With bulletins properly installed you will have new context variables in your
+templates. Global bulletins can be accessed in this way:
 
     {% for bulletin in bulletins.global %}
         {{ bulletin.bulletin.creator }}

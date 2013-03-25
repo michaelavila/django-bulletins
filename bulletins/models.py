@@ -16,6 +16,7 @@ class Bulletin(models.Model):
 
     def mark_read(self):
         self.read_at = timezone.now()
+        self.save()
 
 
 class GlobalBulletin(models.Model):

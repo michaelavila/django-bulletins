@@ -32,9 +32,14 @@ class BulletinReadTests(TestCase):
         user = User.objects.create_user(username='testuser')
         self.bulletin = models.Bulletin.objects.create(message='', creator=user)
 
-        self.assertFalse(self.bulletin.has_been_read())
         self.bulletin.mark_read()
+
         self.assertTrue(self.bulletin.has_been_read())
+        # test for save by retrieving from database again to compare
+        self.assertEqual(
+            self.bulletin.read_at,
+            models.Bulletin.objects.all()[0].read_at
+        )
 
 
 class GlobalBulletinManagerTests(TestCase):

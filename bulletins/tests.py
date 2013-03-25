@@ -4,6 +4,37 @@ import models
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.client import RequestFactory
+from django.utils import timezone
+
+
+class BulletinHasBeenReadTests(TestCase):
+
+    def setUp(self):
+        user = User.objects.create_user(username='testuser')
+        self.bulletin = models.Bulletin.objects.create(message='', creator=user)
+
+    def test_has_not_been_read(self):
+        has_been_read = self.bulletin.has_been_read()
+
+        self.assertFalse(has_been_read)
+
+    def test_has_been_read(self):
+        self.bulletin.read_at = timezone.now()
+
+        has_been_read = self.bulletin.has_been_read()
+
+        self.assertTrue(has_been_read)
+
+
+class BulletinReadTests(TestCase):
+
+    def test_mark_read(self):
+        user = User.objects.create_user(username='testuser')
+        self.bulletin = models.Bulletin.objects.create(message='', creator=user)
+
+        self.assertFalse(self.bulletin.has_been_read())
+        self.bulletin.mark_read()
+        self.assertTrue(self.bulletin.has_been_read())
 
 
 class GlobalBulletinManagerTests(TestCase):

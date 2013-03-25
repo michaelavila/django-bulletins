@@ -11,7 +11,7 @@ working in teams where you might want organization and team level bulletins.
 
 First, install the python module using pip:
 
-    $ pip install django-bulletins
+    $ pip install -e git+git@github.com:t3hh00d/django-bulletins.git#egg=bulletins
 
 Second, install the app in your django settings file:
 

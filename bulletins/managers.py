@@ -11,3 +11,13 @@ class GlobalBulletinManager(Manager):
             message=message
         )
         return self.create(bulletin=bulletin)
+
+
+class DirectBulletinManager(Manager):
+
+    def create_bulletin(self, creator, message, recipient):
+        bulletin = models.Bulletin.objects.create(
+            creator=creator,
+            message=message
+        )
+        return self.create(bulletin=bulletin, recipient=recipient)

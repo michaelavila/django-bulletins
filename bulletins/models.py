@@ -11,5 +11,13 @@ class Bulletin(models.Model):
 
 
 class GlobalBulletin(models.Model):
-    objects = managers.GlobalBulletinManager()
     bulletin = models.ForeignKey(Bulletin)
+
+    objects = managers.GlobalBulletinManager()
+
+
+class DirectBulletin(models.Model):
+    bulletin = models.ForeignKey(Bulletin)
+    recipient = models.ForeignKey(User)
+
+    objects = managers.DirectBulletinManager()

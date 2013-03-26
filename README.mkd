@@ -58,8 +58,8 @@ This is simple enough, but I wanted to document it here. Note that the global
 and direct bulletin models themselves don't have the mark\_as\_read() method.
 Only the core bulletin model has it.
 
-    global_bulletin.bulletin.mark_as_read()
-    direct_bulletin.bulletin.mark_as_read()
+    global_bulletin.bulletin.mark_read()
+    direct_bulletin.bulletin.mark_read()
 
 ### Bulletins in Context
 

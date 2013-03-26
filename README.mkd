@@ -5,7 +5,7 @@ direct to user bulletins (a bulletin is a message of some kind) and a simple
 context processor to add these global and direct to user bulletins to the
 template context. This implementation of bulletins is kept simple to encourage
 extending it for your own purposes. One example of this could be the case of
-working in teams where you might want organization and team level bulletins.
+working in teams where you want organization and team level bulletins.
 
 ## Installation
 
@@ -20,7 +20,7 @@ Second, install the app in your django settings file:
         'bulletins',
     }
 
-Third, install the context processor, note that you may need to add 
+Finally, install the context processor, note that you may need to add 
 TEMPLATE\_CONTEXT\_PROCESSORS to the django settings yourself:
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -30,7 +30,7 @@ TEMPLATE\_CONTEXT\_PROCESSORS to the django settings yourself:
 
 ## Usage
 
-There are two ways to use the bulletins app directly. Either you're using the
+There are two ways to use the bulletins app. Either you're using the
 resulting context data in the templates or you're creating bulletins from
 within your own applications.
 
